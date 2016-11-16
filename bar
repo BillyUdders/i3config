@@ -1,0 +1,56 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+    colors = true
+	color_good = "#FFFFFF"
+	color_degraded = "#FFFFFF"
+	color_bad = "#775FED"
+    interval = 1
+}
+
+order += "disk /"
+order += "disk /home"
+order += "load"
+order += "wireless _first_"
+order += "battery 0"
+order += "tztime london"
+order += "tztime local"
+
+battery 0 {
+        format = "%status %percentage"
+        format_down = "No battery"
+        status_chr = "⚇ Charging"
+        status_bat = "⚡ Battery"
+        status_full = "☻ Full"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+wireless _first_ {
+    format_up = " Wireless: (%quality at %essid) %ip "
+    format_down = " ☡ WiFi "
+}
+
+disk "/" {
+        format = "Root: %avail/%total"
+}
+
+tztime local {
+        format = "Local %Y-%m-%d %H:%M:%S"
+}
+
+tztime london {
+        format = "London %Y-%m-%d %H:%M:%S %Z"
+        timezone = "Europe/London"
+}
+
+disk "/home" {
+	format = "Home: %avail/%total"
+}
+
